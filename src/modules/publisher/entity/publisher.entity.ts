@@ -4,25 +4,30 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Website } from '../../website/entity/website.entity';
 
 @Entity('publisher')
 export class Publisher {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ type: 'varchar', unique: true })
-  name: string;
+  name!: string;
 
   @Column({ type: 'varchar' })
-  email: string;
+  email!: string;
 
   @Column({ type: 'varchar', name: 'contact_name' })
-  contactName: string;
+  contactName!: string;
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
+  updatedAt!: Date;
+
+  @OneToMany(() => Website, (website) => website.publisher)
+  websites!: Website[];
 }
