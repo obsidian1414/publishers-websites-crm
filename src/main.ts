@@ -2,9 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { runMigrations } from './common/scripts/migration.runner';
 import { ValidationPipe } from '@nestjs/common';
+import { LoggingInterceptor } from './common/scripts/interceptors/logging.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'error', 'warn', 'debug', 'verbose'],
+  });
   await runMigrations();
   app.useGlobalPipes(
     new ValidationPipe({
@@ -13,6 +16,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.useGlobalInterceptors(new LoggingInterceptor());
   app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3000);
 }
