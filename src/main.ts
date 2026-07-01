@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { runMigrations } from './common/scripts/migration.runner';
 import { ValidationPipe } from '@nestjs/common';
+import { LoggingInterceptor } from './common/scripts/interceptors/logging.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -15,6 +16,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.useGlobalInterceptors(new LoggingInterceptor());
   app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3000);
 }
