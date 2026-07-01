@@ -7,6 +7,6 @@ import { Website } from './entity/website.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Website])],
   controllers: [WebsiteController],
-  providers: [WebsiteService]
+  providers: [WebsiteService],
 })
 export class WebsiteModule {}

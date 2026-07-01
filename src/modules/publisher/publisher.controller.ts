@@ -4,31 +4,25 @@ import { CreatePublisherDto } from './dto/create-publisher.dto';
 
 @Controller('publisher')
 export class PublisherController {
-    constructor (private readonly publisherService: PublisherService) {}
+  constructor(private readonly publisherService: PublisherService) {}
 
-    @Post()
-    async postPublisher(
-        @Body() createPublisher: CreatePublisherDto
-    ) {
-        return await this.publisherService.createPublisher(createPublisher);
-    }
-    
-    @Get()
-    async getPublishers() {
-        return await this.publisherService.retrieveAllPublishers();
-    }
+  @Post()
+  async postPublisher(@Body() createPublisher: CreatePublisherDto) {
+    return await this.publisherService.createPublisher(createPublisher);
+  }
 
-    @Get(':id')
-    async getPublisherById(
-        @Param('id') id: string
-    ) {
-        return await this.publisherService.retrievePublisherById(+id);
-    }
+  @Get()
+  async getPublishers() {
+    return await this.publisherService.retrieveAllPublishers();
+  }
 
-    @Delete(':id')
-    async deletePublisher(
-        @Param('id') id: string
-    ) {
-        return await this.publisherService.deletePublisher(+id)
-    }
+  @Get(':id')
+  async getPublisherById(@Param('id') id: string) {
+    return await this.publisherService.retrievePublisherById(+id);
+  }
+
+  @Delete(':id')
+  async deletePublisher(@Param('id') id: string) {
+    return await this.publisherService.deletePublisher(+id);
+  }
 }

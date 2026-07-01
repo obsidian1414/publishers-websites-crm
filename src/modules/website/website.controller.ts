@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { WebsiteService } from './website.service';
 import { CreateWebsiteDto } from './dto/create-website.dto';
 
@@ -24,10 +17,10 @@ export class WebsiteController {
   }
 
   @Get('publisher/:publisherId')
-  async getWebsitesByPublisher(
-    @Param('publisherId') publisherId: number,
-  ) {
-    return await this.websiteService.retrieveWebsitesByPublisherId(+publisherId);
+  async getWebsitesByPublisher(@Param('publisherId') publisherId: number) {
+    return await this.websiteService.retrieveWebsitesByPublisherId(
+      +publisherId,
+    );
   }
 
   @Get(':id')
