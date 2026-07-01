@@ -1,11 +1,7 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 
 dotenv.config();
-
-const env = (process.env.NODE_ENV || '').toLowerCase();
 
 export default new DataSource({
     type: 'postgres',
