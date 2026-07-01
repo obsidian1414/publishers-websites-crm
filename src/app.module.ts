@@ -11,5 +11,4 @@ import { RedisCacheModule } from './cache/redis.cache.module';
     RedisCacheModule,
   ],
 })
-
 export class AppModule {}
