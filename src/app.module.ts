@@ -4,6 +4,7 @@ import configuration from './config/config';
 import { DatabaseModule } from './database/database.module';
 import { RedisCacheModule } from './cache/redis.cache.module';
 import { PublisherModule } from './modules/publisher/publisher.module';
+import { WebsiteModule } from './modules/website/website.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { PublisherModule } from './modules/publisher/publisher.module';
     DatabaseModule,
     RedisCacheModule,
     PublisherModule,
+    WebsiteModule,
   ],
 })
 export class AppModule {}
