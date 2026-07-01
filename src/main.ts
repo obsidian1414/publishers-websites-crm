@@ -4,7 +4,9 @@ import { runMigrations } from './common/scripts/migration.runner';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'error', 'warn', 'debug', 'verbose'],
+  });
   await runMigrations();
   app.useGlobalPipes(
     new ValidationPipe({
