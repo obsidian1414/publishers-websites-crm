@@ -1,20 +1,28 @@
-import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PublisherService } from './publisher.service';
+import { CreatePublisherDto } from './dto/create-publisher.dto';
 
 @Controller('publisher')
 export class PublisherController {
     constructor (private readonly publisherService: PublisherService) {}
 
-    @Get(':id')
-    async getPublishers(
-        @Param('id') id: string
+    @Post()
+    async postPublisher(
+        @Body() createPublisher: CreatePublisherDto
     ) {
-        return await this.publisherService.retrievePublishers(+id);
+        return await this.publisherService.createPublisher(createPublisher);
+    }
+    
+    @Get()
+    async getPublishers() {
+        return await this.publisherService.retrieveAllPublishers();
     }
 
-    @Post()
-    async postPublisher() {
-        return await this.publisherService.createPublisher();
+    @Get(':id')
+    async getPublisherById(
+        @Param('id') id: string
+    ) {
+        return await this.publisherService.retrievePublisherById(+id);
     }
 
     @Delete(':id')
